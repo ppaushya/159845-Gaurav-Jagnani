@@ -1,0 +1,284 @@
+import java.util.Scanner;
+
+public class AssignmentDay4 {
+
+	Scanner scan=new Scanner(System.in);
+	public void Factors()
+	{
+		int num;
+		System.out.println("Enter the number: ");
+		num=scan.nextInt();
+		System.out.println("Prime Factors of " + num + " are: ");
+		for(int i=2;i<=num;)
+		{
+			if(num%i==0)
+			{
+				System.out.print(i);
+				num/=i;
+				if(num!=1)
+				{
+					System.out.print(" * ");
+				}
+			}
+			else
+			{
+				i++;
+			}
+			if(num<1)
+			{
+				break;
+			}
+		}
+	}
+	
+	public void AlphabetSort()
+	{
+		String str;
+		char[] str1=new char[50];
+		char swap;
+		System.out.println("Enter your String: ");
+		str=scan.next();
+		for(int i=0;i<str.length();i++)
+		{
+			str1[i]=str.charAt(i);
+		}
+		for(int i=0;i<str.length();i++)
+		{
+			for(int j=i+1;j<str.length();j++)
+			{
+				if(str1[j]<str1[i])
+				{
+					swap = str1[i];
+					str1[i]=str1[j];
+					str1[j]=swap;
+				}
+			}
+		}
+		for(int i=0;i<str.length();i++)
+		{
+			System.out.print(str1[i]);
+		}
+	}
+	
+	public void LetterCapital(String str)
+	{
+		char[] str1=new char[50];
+		int swap;
+		for(int i=0;i<str.length();i++)
+		{
+			str1[i]=str.charAt(i);
+		}
+		swap = str1[0];
+		swap -= 32;
+		str1[0] = (char)swap;
+		for(int i=1;i<str.length();i++)
+		{
+			if(str1[i] == ' ' && str1[i+1] != ' ')
+			{
+				swap = str1[i+1];
+				swap -= 32;
+				str1[i+1] = (char)swap;
+			}
+			else if(str1[i] == ' ' && str1[i+1] == ' ')
+			{
+				System.out.println("Enter valid Data!");
+			}
+		}
+		for(int i=0;i<str.length();i++)
+		{
+			System.out.print(str1[i]);
+		}
+	}
+	
+	public void LetterChanges(String str)
+	{
+		char[] str1=new char[50];
+		int swap;
+		for(int i=0;i<str.length();i++)
+		{
+			str1[i]=str.charAt(i);
+			swap = str1[i];
+			if(swap != 122)
+			{
+				swap++;
+				str1[i] = (char)swap;
+			}
+			else
+			{
+				swap = 97;
+				str1[i] = (char)swap;
+			}
+			switch(swap)
+			{
+				case 97:
+					str1[i]='A';
+					break;
+				case 101:
+					str1[i]='E';
+					break;
+				case 105:
+					str1[i]='I';
+					break;
+				case 111:
+					str1[i]='O';
+					break;
+				case 117:
+					str1[i]='U';
+					break;
+			}
+		}
+		
+		for(int i=0;i<str.length();i++)
+		{
+			System.out.print(str1[i]);
+		}
+	}
+	
+	public void ReverseOrder(String str)
+	{
+		char[] str1=new char[50];
+		char[] str2=new char[50];
+		for(int i=0;i<str.length();i++)
+		{
+			str1[i]=str.charAt(i);
+			str2[(str.length())-i-1]=str1[i];
+		}
+		for(int i=0;i<str.length();i++)
+		{
+			System.out.print(str2[i]);
+		}
+	}
+	
+	public int Factorial(int num)
+	{
+		if(num==1)
+		{
+			System.out.print(num);
+			return 1;
+		}
+		else
+		{
+			System.out.print(num + " * ");
+			return num*(Factorial(num-1));
+		}
+	}
+	
+	public void LongestWord(String str)
+	{
+		int count=0, count1=0,index=0;
+		char[] str1=new char[50];
+		for(int i=0;i<str.length();i++)
+		{
+			str1[i]=str.charAt(i);
+			
+		}
+		
+		for(int i=0;i<str.length();i++)
+		{
+			if(i==(str.length()-1) && count1>=count && str1[i]!=' ')
+			{
+				count = count1 + 1;
+				index=i-count+1;
+			}
+			if(str1[i]==' ' && count1>count)
+			{
+				count = count1;
+				index=i-count;
+				count1=0;
+			}
+			else if(str1[i]!=' ')
+			{
+				count1++;
+			}
+			else if(str1[i]==' ' && count1==count)
+			{
+				count1=0;
+			}
+		}
+		for(int i=index; i<(index+count) ;i++)
+		{
+			System.out.print(str1[i]);
+		}
+	}
+	
+	public void Anagram()
+	{
+		int flag=0;
+		String str1,str2;
+		char swap;
+		char[] string1=new char[50];
+		char[] string2=new char[50];
+		
+		System.out.println("Enter First String: ");
+		str1=scan.next();
+		System.out.println("Enter Second String: ");
+		str2=scan.next();
+		
+		for(int i=0;i<str1.length();i++)
+		{
+			string1[i]=str1.charAt(i);
+		}
+		for(int i=0;i<str2.length();i++)
+		{
+			string2[i]=str2.charAt(i);
+		}
+		if(str1.length() != str2.length())
+		{
+			System.out.println("Inserted Strings are not Anagram!");
+			flag=1;
+		}
+		else
+		{
+			for(int i=0;i<str1.length();i++)
+			{
+				for(int j=i+1;j<str1.length();j++)
+				{
+					if(string1[j]<string1[i])
+					{
+						swap = string1[i];
+						string1[i]=string1[j];
+						string1[j]=swap;
+					}
+					if(string2[j]<string2[i])
+					{
+						swap = string2[i];
+						string2[i]=string2[j];
+						string2[j]=swap;
+					}
+				}
+				if(string1[i]!=string1[i])
+				{
+					System.out.println("Inserted Strings are not Anagram!");
+					flag=1;
+					break;
+				}
+			}
+			if(flag==0)
+			{
+				System.out.println("Inserted Strings are Anagram!");
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner scan=new Scanner(System.in);
+		String str;
+		int fact,num;
+		AssignmentDay4 obj=new AssignmentDay4();
+		/*System.out.println("Enter a Number: ");
+		num=scan.nextInt();*/
+		/*System.out.println("Enter your String: ");
+		str=scan.nextLine();*/
+		
+		//obj.Factors();
+		//obj.AlphabetSort();
+		//obj.LetterCapital(str);
+		//obj.LetterChanges(str);
+		//obj.ReverseOrder(str);
+		//fact = obj.Factorial(num);
+		//System.out.println("\n" + fact);
+		//obj.LongestWord(str);
+		obj.Anagram();
+	}
+}
