@@ -1,0 +1,264 @@
+import java.util.Scanner;
+
+public class Array2d {
+
+	int[][] arr, arr1,arr2;
+	int r,c,r1,c1;
+	
+	public void getData()
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter Number of Rows and Columns: ");
+		r=scan.nextInt();
+		c=scan.nextInt();
+		
+		arr=new int[r][c];
+		
+		if(r!=c)
+		{
+			System.out.println("Incorrect Data!");
+		}
+		else
+		{
+			System.out.println("Insert Data: ");
+			for(int i=0;i<r;i++)
+			{
+				for(int j=0;j<r;j++)
+				{
+					arr[i][j] = scan.nextInt();
+				}
+			}
+		}
+	}
+	
+	public void getAddData()
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter Number of Rows and Columns of Matrix 1: ");
+		r=scan.nextInt();
+		c=scan.nextInt();
+		
+		System.out.println("Enter Number of Rows and Columns of Matrix 2: ");
+		r1=scan.nextInt();
+		c1=scan.nextInt();
+		
+		arr=new int[r][c];
+		arr1=new int[r1][c1];
+		arr2=new int[r1][c1];
+		
+		if(r!=r1 || c!=c1)
+		{
+			System.out.println("Incorrect Data!");
+		}
+		else
+		{
+			System.out.println("Insert Data for Matrix 1:");
+			for(int i=0;i<r;i++)
+			{
+				for(int j=0;j<r;j++)
+				{
+					arr[i][j] = scan.nextInt();
+				}
+			}
+			System.out.println("Insert Data for Matrix 2:");
+			for(int i=0;i<r;i++)
+			{
+				for(int j=0;j<r;j++)
+				{
+					arr1[i][j] = scan.nextInt();
+				}
+			}
+		}
+	}
+	
+	public void getMulData()
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter Number of Rows and Columns of Matrix 1: ");
+		r=scan.nextInt();
+		c=scan.nextInt();
+		
+		System.out.println("Enter Number of Rows and Columns of Matrix 2: ");
+		r1=scan.nextInt();
+		c1=scan.nextInt();
+		
+		arr=new int[r][c];
+		arr1=new int[r1][c1];
+		arr2=new int[r][c1];
+		
+		if(c!=r1)
+		{
+			System.out.println("Incorrect Data!");
+		}
+		else
+		{
+			System.out.println("Insert Data for Matrix 1:");
+			for(int i=0;i<r;i++)
+			{
+				for(int j=0;j<c;j++)
+				{
+					arr[i][j] = scan.nextInt();
+				}
+			}
+			System.out.println("Insert Data for Matrix 2:");
+			for(int i=0;i<r1;i++)
+			{
+				for(int j=0;j<c1;j++)
+				{
+					arr1[i][j] = scan.nextInt();
+				}
+			}
+		}
+	}
+	
+	public void addmatrix()
+	{
+		for(int i=0;i<r;i++)
+		{
+			for(int j=0;j<c;j++)
+			{
+				arr2[i][j] = arr[i][j] + arr1[i][j];
+				System.out.print(arr2[i][j] + "  ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void mulMatrix()
+	{
+		for(int i=0;i<r;i++)
+		{
+			for(int j=0;j<c1;j++)
+			{
+				for(int k=0;k<c;k++)
+				{
+					arr2[i][j] = arr2[i][j] + arr[i][k]*arr1[k][j];
+				}
+				System.out.print(arr2[i][j] + "  ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void getAnyData()
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter Number of Rows and Columns: ");
+		r=scan.nextInt();
+		c=scan.nextInt();
+		
+		arr=new int[r][c];
+		System.out.println("Insert Data: ");
+		for(int i=0;i<r;i++)
+		{
+			for(int j=0;j<c;j++)
+			{
+				arr[i][j] = scan.nextInt();
+			}
+		}
+	}
+	
+	public void upperTriangle()
+	{
+		System.out.println("Upper triangle:");
+		for(int i=0;i<r;i++)
+		{
+			System.out.println();
+			for(int j=0;j<r;j++)
+			{
+				if(j>=i)
+				{
+					System.out.print(arr[i][j] + "  ");
+				}
+				else
+				{
+					System.out.print("   ");
+				}
+			}
+		}
+	}
+	
+	public void lowerTriangle()
+	{
+		System.out.println("\n\nLower Triangle:");
+		for(int i=0;i<r;i++)
+		{
+			System.out.println();
+			for(int j=0;j<r;j++)
+			{
+				if(j<=i)
+				{
+					System.out.print(arr[i][j] + "  ");
+				}
+				else
+				{
+					System.out.print("   ");
+				}
+			}
+		}
+	}
+	
+	public void transpose()
+	{
+		System.out.println("\n\nTranspose matrix:");
+		for(int i=0;i<r;i++)
+		{
+			System.out.println();
+			for(int j=0;j<r;j++)
+			{
+				System.out.print(arr[j][i] + "  ");
+			}
+		}
+	}
+	public void smallRow()
+	{
+		int prevsum=0,sm=0,row=0;
+		for(int i=0;i<r;i++)
+		{
+			for(int j=0;j<c;j++)
+			{
+				sm = sm + arr[i][j];
+			}
+			if(i==0)
+			{
+				prevsum=sm;
+				sm=0;
+				row=i;
+			}
+			else if(i!=0 && sm<prevsum)
+			{
+				prevsum=sm;
+				row=i;
+				sm=0;
+			}
+		}
+		for(int i=0;i<c;i++)
+		{
+			System.out.print(arr[row][i] + "  ");
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		/*arr[0][0]=15;
+		arr[0][1]=48;
+		
+		arr[1][0]=50;
+		arr[1][1]=75;
+		
+		arr[2][0]=72;
+		arr[2][1]=18;*/
+		
+		Array2d obj=new Array2d();
+		/*obj.getData();
+		obj.upperTriangle();
+		obj.lowerTriangle();
+		obj.transpose();
+		obj.getAnyData();
+		obj.smallRow();
+		obj.getAddData();
+		obj.addmatrix();*/
+		obj.getMulData();
+		obj.mulMatrix();
+	}
+}
